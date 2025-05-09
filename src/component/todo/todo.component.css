@@ -1,4 +1,16 @@
+
 .barred-text{ text-decoration: line-through;}
-.bold-text{
-    font-weight: bold;
+.button-style{
+  border-radius:"13px";
+  height:50px;
+  width:120px;
+  
+}
+.button-style:hover{
+  background-color:darken;
+}
+.todo-input{
+  height : 50px;
+  width:50vw;
+  border-radius:13px
 }
