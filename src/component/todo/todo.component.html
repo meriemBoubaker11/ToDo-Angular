@@ -1,8 +1,8 @@
-<div class="todos">
-    <form (submit)="addTodo()">
-    <input type="text" placeholder="insert to do ..." name="enterToDo" class="todo-input" [(ngModel)]="inputTodo" />
-    <input type="submit" value="Add Todo" class="todo-submit" />
+<form class="form" (submit)="addTodo()">
+<input type="text" placeholder="insert to do ..." name="enterToDo" class="todo-input" [(ngModel)]="inputTodo" />
+<input type="submit" value="Add Todo" class="todo-submit" />
 </form>
+<div #scrollContainer class="todos" >
     <div class="todo" *ngFor="let todo of todos; let i = index;">
         <div class="id">{{ i }}</div>
         <div class="content {{ (todo.completed ? 'barred-text' : '') }}" (click)="toggleDone(i)">{{

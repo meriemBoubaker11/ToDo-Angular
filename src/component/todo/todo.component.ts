@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Todo } from '../../models/Todo'
 import { CommonModule } from '@angular/common';
 import { NgModel } from '@angular/forms';
@@ -13,7 +13,10 @@ import { FormsModule } from '@angular/forms';
 export class TodoComponent implements OnInit {
   todos: Todo[] = [];
   inputTodo: string = '';
+  private shouldScroll: boolean = false;
+
   constructor() { }
+  @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   ngOnInit(): void {
     this.todos = [
       { content: "first to do", completed: false },
@@ -35,5 +38,16 @@ export class TodoComponent implements OnInit {
       completed: false
     })
     this.inputTodo = "";
+    this.shouldScroll = true;
+  }
+  ngAfterViewChecked(): void {
+    if (this.shouldScroll) {
+      this.scrollToBottom();
+      this.shouldScroll = false;
+    }
+  }
+  private scrollToBottom(): void {
+    const el = this.scrollContainer.nativeElement;
+    el.scrollTop = el.scrollHeight;
   }
 }
